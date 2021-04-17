@@ -1,12 +1,12 @@
-import { Box, Container } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import Form from '../components/Form';
-import {login, getHeaders} from '../api/Api'
+import {signIn} from '../api/Api'
+import { Redirect, withRouter } from 'react-router';
 
-const Login = () => {
+const Login = (props) => {
     const efetuarLogin = async (user) => {
-        console.log(JSON.stringify(user))
-        await login(user);
-        console.log(getHeaders())
+        await signIn(user);
+        props.history.push("/home");
     }
     return(
         <Container component="main" maxWidth="xs">
@@ -17,4 +17,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default withRouter(Login);

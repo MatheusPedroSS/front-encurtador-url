@@ -1,5 +1,6 @@
 import { Box, Button, Input, makeStyles, TextField, Typography } from '@material-ui/core';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
@@ -16,6 +17,13 @@ const useStyles = makeStyles({
         marginTop: 10,
         paddingTop: 10,
         paddingBottom: 10
+    },
+    link: {
+        padding: 30,
+        paddingTop: 50,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
     }
 })
 
@@ -74,8 +82,14 @@ const Form = (props) => {
                     className={classes.buttonSub}
                     onClick={clicked}
                 >
-                    Entrar
+                    {props.title === "Login" ? "Entrar" : "Cadastrar"}
                 </Button>
+                <div className={classes.link}> 
+                    {props.title === "Login" ?
+                        <Link to="/signUp" style={{textDecoration: 'none'}}>Usuario novo? Cadastre-se.</Link> 
+                            : 
+                        <Link to="/">Entrar</Link>}
+                </div>
             </form> 
         </div>
     )

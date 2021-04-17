@@ -1,15 +1,16 @@
 import axios from 'axios';
+import {setToken} from '../services/auth';
 
-let headers
-
-export const login = async (user) => {
+export const signIn = async (user) => {
     await axios.post("http://localhost:8080/auth", user).then(
-        (respone) => {
-            headers = respone.headers
+        response => {
+            setToken(response.headers.authorization);
         }
     )
 }
 
-export const getHeaders = () => {
-    return headers;
+export const signUp = async (user) => {
+    await axios.post("http://localhost:8080/usuario", user).then(
+        () => console.log(user)
+    )
 }
